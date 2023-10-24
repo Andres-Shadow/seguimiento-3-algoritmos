@@ -1,44 +1,47 @@
 package algoritmos
 
-import "fmt"
+import (
+	"fmt"
+	"seg_3_algoritmos/herramientas"
+)
 
-func NaivStandard(A [][]float64, B [][]float64, Result [][]float64, N, P, M int) {
-    for i := 0; i < N; i++ {
-        for j := 0; j < M; j++ {
-            aux := 0.0
-            for k := 0; k < P; k++ {
-                aux += A[i][k] * B[k][j]
-            }
-            Result[i][j] = aux
-        }
-    }
+func NaivStandard(A [][]int, B [][]int, Result [][]int, N, P, M int) {
+	for i := 0; i < N; i++ {
+		for j := 0; j < M; j++ {
+			aux := 0
+			for k := 0; k < P; k++ {
+				aux += A[i][k] * B[k][j]
+			}
+			Result[i][j] = aux
+		}
+	}
 }
 
 func LlamarNaivStandart() {
-    // Definir las dimensiones de las matrices
-    N := 2
-    P := 3
-    M := 2
+	// Definir las dimensiones de las matrices
+	N := 1024
+	P := 1024
+	M := 1024
 
-    // Declarar y asignar valores a las matrices A y B
-    A := [][]float64{{1.0, 2.0, 3.0}, {4.0, 5.0, 6.0}}
-    B := [][]float64{{7.0, 8.0}, {9.0, 10.0}, {11.0, 12.0}}
+	// Declarar y asignar valores a las matrices A y B
+	A, _ := herramientas.LoadMatrixFromFile("datos.dat", 1024, 1024)
+	B, _ := herramientas.LoadMatrixFromFile("datos2.dat", 1024, 1024)
 
-    // Crear una matriz para el resultado
-    Result := make([][]float64, N)
-    for i := range Result {
-        Result[i] = make([]float64, M)
-    }
+	// Crear una matriz para el resultado
+	Result := make([][]int, N)
+	for i := range Result {
+		Result[i] = make([]int, M)
+	}
 
-    // Llamar a la función para multiplicar las matrices
-    NaivStandard(A, B, Result, N, P, M)
+	// Llamar a la función para multiplicar las matrices
+	NaivStandard(A, B, Result, N, P, M)
 
-    // Imprimir la matriz resultante
-    fmt.Println("Matriz Resultante:")
-    for i := 0; i < N; i++ {
-        for j := 0; j < M; j++ {
-            fmt.Printf("%.2f ", Result[i][j])
-        }
-        fmt.Println()
-    }
+	// Imprimir la matriz resultante
+	fmt.Println("Matriz Resultante:")
+	for i := 0; i < N; i++ {
+		for j := 0; j < M; j++ {
+			fmt.Print(Result[i][j], " ")
+		}
+		fmt.Println()
+	}
 }

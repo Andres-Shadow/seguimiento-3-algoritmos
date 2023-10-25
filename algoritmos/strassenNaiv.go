@@ -3,26 +3,28 @@ package algoritmos
 import (
 	"fmt"
 	"math"
+	"seg_3_algoritmos/herramientas"
+	"time"
 )
 
-func StrassenNaiv(A [][]float64, B [][]float64, Result [][]float64, N int, P int, M int) {
-	MaxSize := math.Max(float64(N), float64(P))
-	MaxSize = math.Max(MaxSize, float64(M))
+func StrassenNaiv(A [][]int, B [][]int, Result [][]int, N int, P int, M int) {
+	MaxSize := math.Max(float64(int(N)), float64(int(P)))
+	MaxSize = math.Max(MaxSize, float64(int(M)))
 	if MaxSize < 16 {
 		MaxSize = 16 // otherwise it is not possible to compute k
 	}
 	k := int(math.Floor(math.Log2(MaxSize)/math.Log2(2))) - 4
-	m := int(math.Floor(MaxSize*math.Pow(2, -float64(k)))) + 1
-	NewSize := m * int(math.Pow(2, float64(k)))
+	m := int(math.Floor(MaxSize*math.Pow(2, float64(-int(k))))) + 1
+	NewSize := m * int(math.Pow(2, float64(int(k))))
 
 	// add zero rows and columns to use Strassens algorithm
-	NewA := make([][]float64, NewSize)
-	NewB := make([][]float64, NewSize)
-	AuxResult := make([][]float64, NewSize)
+	NewA := make([][]int, NewSize)
+	NewB := make([][]int, NewSize)
+	AuxResult := make([][]int, NewSize)
 	for i := 0; i < NewSize; i++ {
-		NewA[i] = make([]float64, NewSize)
-		NewB[i] = make([]float64, NewSize)
-		AuxResult[i] = make([]float64, NewSize)
+		NewA[i] = make([]int, NewSize)
+		NewB[i] = make([]int, NewSize)
+		AuxResult[i] = make([]int, NewSize)
 	}
 
 	for i := 0; i < NewSize; i++ {
@@ -54,54 +56,54 @@ func StrassenNaiv(A [][]float64, B [][]float64, Result [][]float64, N int, P int
 	}
 }
 
-func StrassenNaivStep(A, B, Result [][]float64, N, m int) {
+func StrassenNaivStep(A, B, Result [][]int, N, m int) {
 	if N%2 == 0 && N > m {
 		NewSize := N / 2
 
-		A11 := make([][]float64, NewSize)
-		A12 := make([][]float64, NewSize)
-		A21 := make([][]float64, NewSize)
-		A22 := make([][]float64, NewSize)
-		B11 := make([][]float64, NewSize)
-		B12 := make([][]float64, NewSize)
-		B21 := make([][]float64, NewSize)
-		B22 := make([][]float64, NewSize)
-		ResultPart11 := make([][]float64, NewSize)
-		ResultPart12 := make([][]float64, NewSize)
-		ResultPart21 := make([][]float64, NewSize)
-		ResultPart22 := make([][]float64, NewSize)
-		Helper1 := make([][]float64, NewSize)
-		Helper2 := make([][]float64, NewSize)
-		Aux1 := make([][]float64, NewSize)
-		Aux2 := make([][]float64, NewSize)
-		Aux3 := make([][]float64, NewSize)
-		Aux4 := make([][]float64, NewSize)
-		Aux5 := make([][]float64, NewSize)
-		Aux6 := make([][]float64, NewSize)
-		Aux7 := make([][]float64, NewSize)
+		A11 := make([][]int, NewSize)
+		A12 := make([][]int, NewSize)
+		A21 := make([][]int, NewSize)
+		A22 := make([][]int, NewSize)
+		B11 := make([][]int, NewSize)
+		B12 := make([][]int, NewSize)
+		B21 := make([][]int, NewSize)
+		B22 := make([][]int, NewSize)
+		ResultPart11 := make([][]int, NewSize)
+		ResultPart12 := make([][]int, NewSize)
+		ResultPart21 := make([][]int, NewSize)
+		ResultPart22 := make([][]int, NewSize)
+		Helper1 := make([][]int, NewSize)
+		Helper2 := make([][]int, NewSize)
+		Aux1 := make([][]int, NewSize)
+		Aux2 := make([][]int, NewSize)
+		Aux3 := make([][]int, NewSize)
+		Aux4 := make([][]int, NewSize)
+		Aux5 := make([][]int, NewSize)
+		Aux6 := make([][]int, NewSize)
+		Aux7 := make([][]int, NewSize)
 
 		for i := 0; i < NewSize; i++ {
-			A11[i] = make([]float64, NewSize)
-			A12[i] = make([]float64, NewSize)
-			A21[i] = make([]float64, NewSize)
-			A22[i] = make([]float64, NewSize)
-			B11[i] = make([]float64, NewSize)
-			B12[i] = make([]float64, NewSize)
-			B21[i] = make([]float64, NewSize)
-			B22[i] = make([]float64, NewSize)
-			ResultPart11[i] = make([]float64, NewSize)
-			ResultPart12[i] = make([]float64, NewSize)
-			ResultPart21[i] = make([]float64, NewSize)
-			ResultPart22[i] = make([]float64, NewSize)
-			Helper1[i] = make([]float64, NewSize)
-			Helper2[i] = make([]float64, NewSize)
-			Aux1[i] = make([]float64, NewSize)
-			Aux2[i] = make([]float64, NewSize)
-			Aux3[i] = make([]float64, NewSize)
-			Aux4[i] = make([]float64, NewSize)
-			Aux5[i] = make([]float64, NewSize)
-			Aux6[i] = make([]float64, NewSize)
-			Aux7[i] = make([]float64, NewSize)
+			A11[i] = make([]int, NewSize)
+			A12[i] = make([]int, NewSize)
+			A21[i] = make([]int, NewSize)
+			A22[i] = make([]int, NewSize)
+			B11[i] = make([]int, NewSize)
+			B12[i] = make([]int, NewSize)
+			B21[i] = make([]int, NewSize)
+			B22[i] = make([]int, NewSize)
+			ResultPart11[i] = make([]int, NewSize)
+			ResultPart12[i] = make([]int, NewSize)
+			ResultPart21[i] = make([]int, NewSize)
+			ResultPart22[i] = make([]int, NewSize)
+			Helper1[i] = make([]int, NewSize)
+			Helper2[i] = make([]int, NewSize)
+			Aux1[i] = make([]int, NewSize)
+			Aux2[i] = make([]int, NewSize)
+			Aux3[i] = make([]int, NewSize)
+			Aux4[i] = make([]int, NewSize)
+			Aux5[i] = make([]int, NewSize)
+			Aux6[i] = make([]int, NewSize)
+			Aux7[i] = make([]int, NewSize)
 		}
 
 		for i := 0; i < NewSize; i++ {
@@ -166,22 +168,53 @@ func StrassenNaivStep(A, B, Result [][]float64, N, m int) {
 
 func LlamarStrassenNaiv(opcion int) {
 	// Example usage
-	N := 2
-	P := 2
-	M := 2
-	A := [][]float64{{1, 2}, {3, 4}}
-	B := [][]float64{{5, 6}, {7, 8}}
-	Result := make([][]float64, N)
-	for i := 0; i < N; i++ {
-		Result[i] = make([]float64, M)
+	startTime := time.Now()
+
+	// Definir las dimensiones de las matrices
+	var nombre1, nombre2 string
+	var N, P, M int
+
+	switch opcion {
+	case 1:
+		N = 1024
+		P = 1024
+		M = 1024
+		nombre1 = "datos.dat"
+		nombre2 = "datos2.dat"
+		break
+	case 2:
+		N = 2048
+		P = 2048
+		M = 2048
+		nombre1 = "datos3.dat"
+		nombre2 = "datos4.dat"
+		break
+	case 3:
+		N = 4096
+		P = 4096
+		M = 4096
+		nombre1 = "datos5.dat"
+		nombre2 = "datos6.dat"
+		break
+	}
+
+	// Declarar y asignar valores a las matrices A y B
+	A, _ := herramientas.LoadMatrixFromFile(nombre1, N, N)
+	B, _ := herramientas.LoadMatrixFromFile(nombre2, N, N)
+
+	// Crear una matriz para el resultado
+	Result := make([][]int, N)
+	for i := range Result {
+		Result[i] = make([]int, M)
 	}
 
 	StrassenNaiv(A, B, Result, N, P, M)
 
-	fmt.Println(Result)
+	elapsedTime := time.Since(startTime)
+	fmt.Println("Tiempo de ejecución:", elapsedTime)
 }
 
-func Plus(A, B, Result [][]float64, N, M int) {
+func Plus(A, B, Result [][]int, N, M int) {
 	for i := 0; i < N; i++ {
 		for j := 0; j < M; j++ {
 			Result[i][j] = A[i][j] + B[i][j]
@@ -189,7 +222,7 @@ func Plus(A, B, Result [][]float64, N, M int) {
 	}
 }
 
-func Minus(A, B, Result [][]float64, N, M int) {
+func Minus(A, B, Result [][]int, N, M int) {
 	for i := 0; i < N; i++ {
 		for j := 0; j < M; j++ {
 			Result[i][j] = A[i][j] - B[i][j]

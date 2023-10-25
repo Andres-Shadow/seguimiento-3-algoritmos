@@ -2,9 +2,39 @@ package herramientas
 
 import (
 	"encoding/binary"
+	"fmt"
 	"math/rand"
 	"os"
 )
+
+func GenearMatricesPorTamanio(tam int) {
+	var nombre1 string
+	var nombre2 string
+	switch tam {
+	case 1:
+		tam = 1024
+		nombre1 = "datos.dat"
+		nombre2 = "datos2.dat"
+		break
+	case 2:
+		tam = 2048
+		nombre1 = "datos3.dat"
+		nombre2 = "datos4.dat"
+		break
+	case 3:
+		nombre1 = "datos5.dat"
+		nombre2 = "datos6.dat"
+		tam = 4096
+		break
+	}
+
+	m := GenerateRandomMatrix(tam, tam)
+	SaveMatrixToFile(m, nombre1)
+	fmt.Println("se ha generado la matriz 1 de tamaño ", tam)
+	m = GenerateRandomMatrix(tam, tam)
+	SaveMatrixToFile(m, nombre2)
+	fmt.Println("se ha generado la matriz 1 de tamaño ", tam)
+}
 
 func GenerateRandomMatrix(rows, cols int) [][]int {
 	matrix := make([][]int, rows)

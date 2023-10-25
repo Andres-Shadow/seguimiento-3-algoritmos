@@ -164,7 +164,7 @@ func StrassenNaivStep(A, B, Result [][]float64, N, m int) {
 	}
 }
 
-func LlamarStrassenNaiv() {
+func LlamarStrassenNaiv(opcion int) {
 	// Example usage
 	N := 2
 	P := 2

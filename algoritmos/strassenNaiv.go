@@ -59,7 +59,7 @@ func StrassenNaivStep(A [][]float64, B [][]float64, Result [][]float64, Size int
 	// ...
 }
 
-func LlamarStrassenNaiv() {
+func LlamarStrassenNaiv(opcion int) {
 	// Example usage
 	N := 2
 	P := 2

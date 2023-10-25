@@ -28,25 +28,25 @@ func main() {
 		algoritmos.LlamarNaivStandart(tam)
 		break
 	case "2":
+		algoritmos.LlamarNaivOnArray(tam)
 		break
 	case "3":
+		algoritmos.LlamarNaivKahan(tam)
 		break
 	case "4":
+		algoritmos.LlamarNaivLoopUnrollingTwo(tam)
 		break
 	case "5":
+		algoritmos.LlamarNaivLoopUnrollingThree(tam)
 		break
 	case "6":
+		algoritmos.LlamarNaivLoopUnrollingFour(tam)
 		break
 	case "7":
+		algoritmos.LlamarStrassenNaiv(tam)
 		break
 	case "x":
-		herramientas.GenearMatricesPorTamanio(tam, "datos1.dat", "datos2.dat")
+		herramientas.GenearMatricesPorTamanio(tam)
 		break
 	}
-	//rows, cols := 1024, 1024
-	//matrix := generateRandomMatrix(rows, cols)
-	//saveMatrixToFile(matrix, "datos.dat")
-	//m := herramientas.GenerateRandomMatrix(1024, 2014)
-	//herramientas.SaveMatrixToFile(m, "datos2.dat")
-	//algoritmos.LlamarNaivStandart()
 }

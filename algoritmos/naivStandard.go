@@ -45,8 +45,8 @@ func LlamarNaivStandart(opcion int) {
 		N = 4096
 		P = 4096
 		M = 4096
-		nombre1 = "datos1.dat"
-		nombre2 = "datos2.dat"
+		nombre1 = "datos5.dat"
+		nombre2 = "datos6.dat"
 		break
 	}
 

@@ -54,9 +54,11 @@ func LlamarNaivKahan(opcion int) {
 	B, _ := herramientas.LoadMatrixFromFile(nombre2, N, N)
 
 	var Result [][]int = make([][]int, N)
-
+	for i := range Result {
+		Result[i] = make([]int, N)
+	}
 	// Compute the matrix product using the NaivKahan algorithm
-	NaivKahan(A, B, Result, 3, 3, 3)
+	NaivKahan(A, B, Result, N, N, N)
 
 	elapsedTime := time.Since(startTime)
 	fmt.Println("Tiempo de ejecución:", elapsedTime)

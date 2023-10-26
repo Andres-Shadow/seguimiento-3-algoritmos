@@ -86,6 +86,9 @@ func LlamarNaivLoopUnrollingFour(opcion int) {
 	B, _ := herramientas.LoadMatrixFromFile(nombre2, N, N)
 
 	var Result [][]int = make([][]int, N)
+	for i := range Result {
+		Result[i] = make([]int, N)
+	}
 
 	NaivLoopUnrollingFour(A, B, Result, N, N, N)
 	elapsedTime := time.Since(startTime)

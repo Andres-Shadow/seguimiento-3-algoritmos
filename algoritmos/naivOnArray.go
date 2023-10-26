@@ -9,7 +9,7 @@ import (
 func NaivOnArray(A, B, Result [][]int, N, P, M int) {
 	for i := 0; i < N; i++ {
 		for j := 0; j < M; j++ {
-			Result[i][j] = 0.0
+			Result[i][j] = 0
 			for k := 0; k < P; k++ {
 				Result[i][j] += A[i][k] * B[k][j]
 			}
@@ -47,10 +47,12 @@ func LlamarNaivOnArray(opcion int) {
 	A, _ := herramientas.LoadMatrixFromFile(nombre1, N, N)
 	B, _ := herramientas.LoadMatrixFromFile(nombre2, N, N)
 
-	var Result [][]int = make([][]int, 3)
-
+	var Result [][]int = make([][]int, N)
+	for i := range Result {
+		Result[i] = make([]int, N)
+	}
 	// Compute the matrix product using the NaivOnArray algorithm
-	NaivOnArray(A, B, Result, 3, 3, 3)
+	NaivOnArray(A, B, Result, N, N, N)
 
 	elapsedTime := time.Since(startTime)
 	fmt.Println("Tiempo de ejecución:", elapsedTime)

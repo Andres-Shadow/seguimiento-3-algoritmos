@@ -61,6 +61,9 @@ func LlamarNaivLoopUnrollingTwo(opcion int) {
 	B, _ := herramientas.LoadMatrixFromFile(nombre2, N, N)
 
 	var Result [][]int = make([][]int, N)
+	for i := range Result {
+		Result[i] = make([]int, N)
+	}
 	// Compute the matrix product using the NaivLoopUnrollingTwo algorithm
 	NaivLoopUnrollingTwo(A, B, Result, N, N, N)
 
